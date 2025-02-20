@@ -1,0 +1,51 @@
+:root{
+    --black:black;
+    --white:white;
+    --sec-bg:rgba(62, 100, 255, 0.1);
+    --head:#3e64ff;
+    --font-color:#999999;
+    --form-bg:#f8f9fa;
+}
+
+#root{
+    font-family: 'Ysabeau SC';
+}
+
+
+.bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100vh;
+    background: var(--sec-bg);
+    z-index: -1;
+  }
+  
+  .about-section {
+    background: #f8f9fa;
+    border-radius: 10px;
+  }
+  
+  .edu-card {
+    background: #fff;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-left: 4px solid #007bff;
+  }
+  .projects-section {
+    background: #f8f9fa;
+  }
+  
+  .project-img {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+  }
+  
+  .project-link:hover .project-img {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  

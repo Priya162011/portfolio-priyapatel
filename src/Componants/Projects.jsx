@@ -8,8 +8,8 @@ function Projects() {
   const projectData = [
     { img: p1, link: "https://ethicore360.com", alt: "Ethicore360 Project" },
     { img: p2, link: "https://handsofgoldny.com", alt: "Hands of Gold NY" },
-    { img: p3, link: "https://github.com/Priya162011/BloodForYoulive", alt: "Local Project 1 (Update Link)" },
-    { img: p4, link: "#", alt: "Local Project 2 (Update Link)" },
+    { img: p3, link: "https://github.com/Priya162011/BloodForYoulive123", alt: "BloodForYou" },
+    { img: p4, link: "https://github.com/Priya162011/BloodForYoulive123", alt: "Alukas" },
   ];
 
   return (

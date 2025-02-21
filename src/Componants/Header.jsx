@@ -11,7 +11,7 @@ function Header() {
   };
 
   return (
-    <Navbar bg="light" expand="lg" className="shadow-sm fixed-top">
+    <Navbar expand="lg" className="shadow-sm fixed-top">
       <Container>
         {/* <Navbar.Brand href="#" onClick={() => handleScroll("home")}>
           <img src={logo} alt="Logo" height="50" />

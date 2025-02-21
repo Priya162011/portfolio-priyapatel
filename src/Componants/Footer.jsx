@@ -4,6 +4,12 @@ import { MdOutlineLocalPhone } from "react-icons/md";
 import { SiMinutemailer } from "react-icons/si";
 
 function Footer() {
+  const handleScroll = (id) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
   return (
     <footer className="bg-dark text-light py-4">
       <div className="container-fluid">
@@ -21,10 +27,10 @@ function Footer() {
           <div className="col-md-4 mb-3">
             <h5 className="fw-bold">Links</h5>
             <ul className="list-unstyled">
-              <li><a href="#" className="text-light text-decoration-none">Home</a></li>
-              <li><a href="#" className="text-light text-decoration-none">About</a></li>
-              <li><a href="#" className="text-light text-decoration-none">Projects</a></li>
-              <li><a href="#" className="text-light text-decoration-none">Contact</a></li>
+              <li><a onClick={() => handleScroll("home")} className="text-light text-decoration-none">Home</a></li>
+              <li><a onClick={() => handleScroll("about")} className="text-light text-decoration-none">About</a></li>
+              <li><a onClick={() => handleScroll("projects")} className="text-light text-decoration-none">Projects</a></li>
+              <li><a onClick={() => handleScroll("contact")} className="text-light text-decoration-none">Contact</a></li>
             </ul>
           </div>
 

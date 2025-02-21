@@ -13,9 +13,9 @@ function Header() {
   return (
     <Navbar bg="light" expand="lg" className="shadow-sm fixed-top">
       <Container>
-        <Navbar.Brand href="#" onClick={() => handleScroll("home")}>
+        {/* <Navbar.Brand href="#" onClick={() => handleScroll("home")}>
           <img src={logo} alt="Logo" height="50" />
-        </Navbar.Brand>
+        </Navbar.Brand> */}
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">

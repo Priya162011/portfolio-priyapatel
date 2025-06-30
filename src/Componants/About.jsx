@@ -27,8 +27,8 @@ function About() {
                         <li className="list-group-item"><strong>Phone:</strong> +91 8401304121</li>
                     </ul>
                     <a
-                        href="/Priya_Patel_CV.pdf"
-                        download="Priya_Patel_CV.pdf"
+                        href="/Priya Patel.pdf"
+                        download="Priya Patel.pdf"
                     >
                         <button className="btn btn-primary mt-3">Download CV</button></a>
                 </div>

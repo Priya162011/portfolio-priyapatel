@@ -1,33 +1,70 @@
-import React from "react";
-import { Container, Navbar, Nav } from "react-bootstrap";
-import logo from "../assets/PRIYA-logo.png";
+import { useEffect, useState } from "react";
+
+const LINKS = [
+  { id: "home", label: "home.jsx" },
+  { id: "about", label: "about.jsx" },
+  { id: "projects", label: "projects.jsx" },
+  { id: "contact", label: "contact.jsx" },
+];
 
 function Header() {
-  const handleScroll = (id) => {
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("home");
+
+  useEffect(() => {
+    const sections = LINKS.map((l) => document.getElementById(l.id)).filter(Boolean);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActive(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
+    );
+
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, []);
+
+  const goTo = (id) => {
+    setOpen(false);
     const section = document.getElementById(id);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    if (section) section.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
-    <Navbar expand="lg" className="shadow-sm fixed-top">
-      <Container>
-        {/* <Navbar.Brand href="#" onClick={() => handleScroll("home")}>
-          <img src={logo} alt="Logo" height="50" />
-        </Navbar.Brand> */}
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto">
-            <Nav.Link onClick={() => handleScroll("home")} className="fw-bold">HOME</Nav.Link>
-            <Nav.Link onClick={() => handleScroll("about")} className="fw-bold">ABOUT</Nav.Link>
-            {/* <Nav.Link onClick={() => handleScroll("resume")} className="fw-bold">RESUME</Nav.Link> */}
-            <Nav.Link onClick={() => handleScroll("projects")} className="fw-bold">PROJECTS</Nav.Link>
-            <Nav.Link onClick={() => handleScroll("contact")} className="fw-bold">CONTACT</Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+    <header className="nav">
+      <div className="nav-inner">
+        <button className="brand" onClick={() => goTo("home")}>
+          <span className="brand-dot" />
+          priya.dev
+        </button>
+
+        <nav className={`tabs ${open ? "open" : ""}`}>
+          {LINKS.map((link) => (
+            <button
+              key={link.id}
+              className={`tab ${active === link.id ? "active" : ""}`}
+              onClick={() => goTo(link.id)}
+            >
+              <span className="tab-dot" />
+              {link.label}
+            </button>
+          ))}
+        </nav>
+
+        <button
+          className="nav-toggle"
+          aria-label="Toggle navigation"
+          onClick={() => setOpen((o) => !o)}
+        >
+          <span />
+        </button>
+      </div>
+    </header>
   );
 }
 

@@ -1,32 +1,25 @@
-import Header from './Componants/Header'
-import './App.css'
-import About from './Componants/About'
-import Contact from './Componants/Contact'
-import Footer from './Componants/Footer'
-import Projects from './Componants/Projects'
-import Home from './Componants/Home'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
+
+import Home from './Componants/Home';
+import About from './Componants/About';
+import Projects from './Componants/Projects';
+import Contact from './Componants/Contact';
+import Footer from './Componants/Footer';
+import { ProgressBar } from './Componants/Effects';
 
 function App() {
-
   return (
     <>
-      <Header />
-      <section id="home">
-      <Home/>
-      </section>
-      <section id="about">
-      <About />
-      </section>
-      <section id="projects">
-      <Projects />
-      </section>
-      <section id="contact">
-      <Contact />
-      </section>
+      <ProgressBar />
+      <main>
+        <section id="home"><Home /></section>
+        <section id="about"><About /></section>
+        <section id="projects"><Projects /></section>
+        <section id="contact"><Contact /></section>
+      </main>
       <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

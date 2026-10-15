@@ -1,107 +1,139 @@
-import React, { useState } from 'react';
-import { GrLocationPin } from "react-icons/gr";
-import { MdOutlineLocalPhone } from "react-icons/md";
-import { SiMinutemailer } from "react-icons/si";
+import React, { useState } from "react";
+import { FiMail, FiPhone, FiMapPin, FiSend, FiCopy, FiCheck } from "react-icons/fi";
+import Reveal from "./Reveal";
+import { spotMove } from "./Effects";
 
-import pic1 from '../assets/aboutpics.jpg';
+const EMAIL = "ppia7978@gmail.com";
+const GOOGLE_FORM_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLSdwtDkPUXrYy9Xf2PXnSOjGCzoMggcIYR7GoQz8_dQrn6ejgg/formResponse";
+
+const empty = { name: "", email: "", subject: "", message: "" };
 
 function Contact() {
-
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState(empty);
+  const [status, setStatus] = useState("idle"); // idle | sending | sent | error
+  const [copied, setCopied] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    if (status === "sent" || status === "error") setStatus("idle");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setStatus("sending");
 
-    // Google Form submission URL
-    const googleFormURL = "https://docs.google.com/forms/d/e/1FAIpQLSdwtDkPUXrYy9Xf2PXnSOjGCzoMggcIYR7GoQz8_dQrn6ejgg/formResponse";
-   
-    const formBody = new FormData();
-    formBody.append("entry.1107641406", formData.name); 
-    formBody.append("entry.1455537946", formData.email);
-    formBody.append("entry.1867312323", formData.subject);
-    formBody.append("entry.1877646665", formData.message);
+    const body = new FormData();
+    body.append("entry.1107641406", formData.name);
+    body.append("entry.1455537946", formData.email);
+    body.append("entry.1867312323", formData.subject);
+    body.append("entry.1877646665", formData.message);
 
-    fetch(googleFormURL, {
-      method: "POST",
-      body: formBody,
-      mode: "no-cors", 
-    })
-    .then(() => {
-      alert("Message sent successfully!");
-      setFormData({ name: "", email: "", subject: "", message: "" });
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      alert("Failed to send message.");
-    });
+    fetch(GOOGLE_FORM_URL, { method: "POST", body, mode: "no-cors" })
+      .then(() => {
+        setStatus("sent");
+        setFormData(empty);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        setStatus("error");
+      });
   };
 
- 
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+    } catch (err) {
+      /* clipboard can be blocked; still show feedback */
+    }
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1800);
+  };
+
   return (
-    <div className="container-fluid py-5">
-      {/* Contact Header */}
-      <div className="text-center mb-4">
-        <h2 className="fw-bold">Contact Me</h2>
-      </div>
+    <div className="section-pad contact-bg">
+      <div className="container">
+        <Reveal className="contact-head">
+          <h2>
+            Let's build something <em>together</em>.
+          </h2>
+          <p>Have a role, a project or just a question? Write to me and I will get back to you.</p>
+        </Reveal>
 
-      {/* Contact Info Cards */}
-      <div className="row text-center mb-4">
-        <div className="col-md-4 mb-1">
-          <div className="card p-4 shadow">
-            <div className="mb-3 text-primary fs-3"><GrLocationPin /></div>
-            <h5 className="fw-bold">Address</h5>
-            <p>89, Desai Faliyu, Veluk, Olpad, Surat</p>
-          </div>
-        </div>
-
-        <div className="col-md-4 mb-1">
-          <div className="card p-4 shadow">
-            <div className="mb-3 text-success fs-3"><MdOutlineLocalPhone /></div>
-            <h5 className="fw-bold">Contact Number</h5>
-            <p><a href="tel:8401304121" className="text-decoration-none">8401304121</a></p>
-          </div>
-        </div>
-
-        <div className="col-md-4 mb-1">
-          <div className="card p-4 shadow">
-            <div className="mb-3 text-danger fs-3"><SiMinutemailer /></div>
-            <h5 className="fw-bold">Email Address</h5>
-            <p><a href="mailto:ppia7978@gmail.com" className="text-decoration-none">ppia7978@gmail.com</a></p>
-          </div>
-        </div>
-      </div>
-
-      {/* Contact Form & Image */}
-      <div className="row align-items-center justify-content-center">
-        {/* <div className="col-md-6 text-center">
-          <img src={pic1} alt="Profile" className="img-fluid rounded shadow" style={{ maxWidth: "400px" }} />
-        </div> */}
-
-        <div className="col-md-6">
-          <form onSubmit={handleSubmit}>
-            <div className="mb-3">
-              <input type="text" className="form-control" placeholder="Your Name" name="name" required value={formData.name} onChange={handleChange}/>
+        <div className="contact-grid">
+          <Reveal>
+            <div className="mail-card spot" onPointerMove={spotMove}>
+              <small>Email me directly</small>
+              <a className="mail-big" href={`mailto:${EMAIL}`}>
+                {EMAIL}
+              </a>
+              <div className="mail-actions">
+                <a className="btn-solid" href={`mailto:${EMAIL}`}>
+                  <FiMail /> Write an email
+                </a>
+                <button className="btn-ghost" type="button" onClick={copyEmail}>
+                  {copied ? <FiCheck /> : <FiCopy />} {copied ? "Copied!" : "Copy"}
+                </button>
+              </div>
             </div>
-            <div className="mb-3">
-              <input type="email" className="form-control" placeholder="Your Email" name="email" required value={formData.email} onChange={handleChange}/>
+
+            <div className="contact-list">
+              <a className="contact-item spot" href="tel:8401304121" onPointerMove={spotMove}>
+                <span className="ci-icon ci-mint"><FiPhone /></span>
+                <div>
+                  <h3>Call me</h3>
+                  <p>+91 8401304121</p>
+                </div>
+              </a>
+              <div className="contact-item spot" onPointerMove={spotMove}>
+                <span className="ci-icon ci-pink"><FiMapPin /></span>
+                <div>
+                  <h3>Based in</h3>
+                  <p>Surat, Gujarat, India</p>
+                </div>
+              </div>
             </div>
-            <div className="mb-3">
-              <input type="text" className="form-control" placeholder="Subject" name="subject" value={formData.subject} onChange={handleChange}/>
-            </div>
-            <div className="mb-3">
-              <textarea className="form-control" name="message" placeholder="Message" rows="4" required value={formData.message} onChange={handleChange}></textarea>
-            </div>
-            <button type="submit" className="btn btn-primary w-100">Send Message</button>
-          </form>
+          </Reveal>
+
+          <Reveal delay={120}>
+            <form className="contact-form" onSubmit={handleSubmit}>
+              <h3 className="form-title">Send a message</h3>
+
+              <div className="row2">
+                <div className="field">
+                  <input id="c-name" type="text" name="name" placeholder=" " required
+                    value={formData.name} onChange={handleChange} />
+                  <label htmlFor="c-name">Your name</label>
+                </div>
+                <div className="field">
+                  <input id="c-email" type="email" name="email" placeholder=" " required
+                    value={formData.email} onChange={handleChange} />
+                  <label htmlFor="c-email">Your email</label>
+                </div>
+              </div>
+
+              <div className="field">
+                <input id="c-subject" type="text" name="subject" placeholder=" "
+                  value={formData.subject} onChange={handleChange} />
+                <label htmlFor="c-subject">Subject</label>
+              </div>
+
+              <div className="field">
+                <textarea id="c-message" name="message" rows="5" placeholder=" " required
+                  value={formData.message} onChange={handleChange} />
+                <label htmlFor="c-message">Message</label>
+              </div>
+
+              <button type="submit" className="btn-solid btn-full" disabled={status === "sending"}>
+                {status === "sending" ? "Sending..." : <>Send message <FiSend /></>}
+              </button>
+
+              <p className={`form-status ${status}`} role="status">
+                {status === "sent" && "Message sent. I will reply to your email soon."}
+                {status === "error" && "The message was not sent. Check your connection and try again."}
+              </p>
+            </form>
+          </Reveal>
         </div>
       </div>
     </div>

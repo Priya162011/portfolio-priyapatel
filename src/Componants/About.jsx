@@ -124,7 +124,7 @@ function About() {
               actually see.
             </p>
 
-            <a className="btn-ghost" href="/PriyaPatel.pdf" download="PriyaPatel.pdf">
+            <a className="btn-ghost" href="/portfolio-priyapatel/PriyaPatel.pdf" download="PriyaPatel.pdf">
               <FiDownload /> Download CV
             </a>
           </Reveal>

@@ -1,4 +1,12 @@
-@import url('./assets/portfoliofont/stylesheet.css');
+@font-face { font-family: 'Ysabeau SC'; src: url('./assets/portfoliofont/YsabeauSC-Bold.woff2') format('woff2'), url('./assets/portfoliofont/YsabeauSC-Bold.woff') format('woff'); font-weight: bold; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Ysabeau SC'; src: url('./assets/portfoliofont/YsabeauSC-ExtraBold.woff2') format('woff2'), url('./assets/portfoliofont/YsabeauSC-ExtraBold.woff') format('woff'); font-weight: 800; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Ysabeau SC'; src: url('./assets/portfoliofont/YsabeauSC-Black.woff2') format('woff2'), url('./assets/portfoliofont/YsabeauSC-Black.woff') format('woff'); font-weight: 900; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Ysabeau SC'; src: url('./assets/portfoliofont/YsabeauSC-SemiBold.woff2') format('woff2'), url('./assets/portfoliofont/YsabeauSC-SemiBold.woff') format('woff'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Ysabeau SC'; src: url('./assets/portfoliofont/YsabeauSC-Regular.woff2') format('woff2'), url('./assets/portfoliofont/YsabeauSC-Regular.woff') format('woff'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Ysabeau SC'; src: url('./assets/portfoliofont/YsabeauSC-Medium.woff2') format('woff2'), url('./assets/portfoliofont/YsabeauSC-Medium.woff') format('woff'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Ysabeau SC'; src: url('./assets/portfoliofont/YsabeauSC-Light.woff2') format('woff2'), url('./assets/portfoliofont/YsabeauSC-Light.woff') format('woff'); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Ysabeau SC'; src: url('./assets/portfoliofont/YsabeauSC-Thin.woff2') format('woff2'), url('./assets/portfoliofont/YsabeauSC-Thin.woff') format('woff'); font-weight: 100; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Ysabeau SC'; src: url('./assets/portfoliofont/YsabeauSC-ExtraLight.woff2') format('woff2'), url('./assets/portfoliofont/YsabeauSC-ExtraLight.woff') format('woff'); font-weight: 200; font-style: normal; font-display: swap; }
 
 :root {
   --text: #6b6375;
@@ -33,7 +41,15 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  @import url('./assets/portfoliofont/stylesheet.css');
+  @font-face { font-family: 'Ysabeau SC'; src: url('./assets/portfoliofont/YsabeauSC-Bold.woff2') format('woff2'), url('./assets/portfoliofont/YsabeauSC-Bold.woff') format('woff'); font-weight: bold; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Ysabeau SC'; src: url('./assets/portfoliofont/YsabeauSC-ExtraBold.woff2') format('woff2'), url('./assets/portfoliofont/YsabeauSC-ExtraBold.woff') format('woff'); font-weight: 800; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Ysabeau SC'; src: url('./assets/portfoliofont/YsabeauSC-Black.woff2') format('woff2'), url('./assets/portfoliofont/YsabeauSC-Black.woff') format('woff'); font-weight: 900; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Ysabeau SC'; src: url('./assets/portfoliofont/YsabeauSC-SemiBold.woff2') format('woff2'), url('./assets/portfoliofont/YsabeauSC-SemiBold.woff') format('woff'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Ysabeau SC'; src: url('./assets/portfoliofont/YsabeauSC-Regular.woff2') format('woff2'), url('./assets/portfoliofont/YsabeauSC-Regular.woff') format('woff'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Ysabeau SC'; src: url('./assets/portfoliofont/YsabeauSC-Medium.woff2') format('woff2'), url('./assets/portfoliofont/YsabeauSC-Medium.woff') format('woff'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Ysabeau SC'; src: url('./assets/portfoliofont/YsabeauSC-Light.woff2') format('woff2'), url('./assets/portfoliofont/YsabeauSC-Light.woff') format('woff'); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Ysabeau SC'; src: url('./assets/portfoliofont/YsabeauSC-Thin.woff2') format('woff2'), url('./assets/portfoliofont/YsabeauSC-Thin.woff') format('woff'); font-weight: 100; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Ysabeau SC'; src: url('./assets/portfoliofont/YsabeauSC-ExtraLight.woff2') format('woff2'), url('./assets/portfoliofont/YsabeauSC-ExtraLight.woff') format('woff'); font-weight: 200; font-style: normal; font-display: swap; }
 
 :root {
     --text: #9ca3af;
@@ -59,11 +75,10 @@ body {
 }
 
 #root {
-  width: 1126px;
+  width: 100%;
   max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
+  margin: 0;
+  text-align: left;
   min-height: 100svh;
   display: flex;
   flex-direction: column;

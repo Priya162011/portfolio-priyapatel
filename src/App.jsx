@@ -14,7 +14,7 @@ function App() {
       <main>
         <section id="home"><Home /></section>
         <section id="about"><About /></section>
-        <section id="projects"><Projects /></section>
+        <Projects />
         <section id="contact"><Contact /></section>
       </main>
       <Footer />
